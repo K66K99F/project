@@ -46,6 +46,7 @@ $this->title = 'My Yii Application';
                     fugiat nulla pariatur.</p>
 
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                <?= Yii::t('apartments', 'привет')?>
             </div>
         </div>
 
