@@ -36,6 +36,6 @@ class m180918_133603_create_user_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('user');
+//        $this->dropTable('user');
     }
 }
