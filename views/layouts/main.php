@@ -3,12 +3,13 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\widgets\Alert;
+//use app\widgets\Alert;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
+//use yii\bootstrap\Nav;
+//use yii\bootstrap\NavBar;
+//use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -26,54 +27,72 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
-</div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+	<div class="home">
+		<header>
+			<div class="header_logo">
+				<a href="">
+					<h1>Недвижимость</h1>
+				</a>
+			</div>
+		</header>
+		<div class="content">
+			<div class="sbl">
+				<div class="sbl_c">
+					<div class="sbl_c_head">
+						<a href="#" class="sbl_c_head_name"><i class="fas fa-user-circle"></i><span>Риелтор-321</span></a>
+						<div class="sbl_c_head_splr">
+							<ul>
+                                                            <li><a href="<?=Url::toRoute(['apartment/index']);?>"><i class="fas fa-user-cog"></i><span>Профиль</span></a></li>
+								<li><a href="<?=Url::toRoute(['site/about']);?>"><i class="fas fa-list-ol"></i><span>Добавленное</span></a></li>
+								<!--<li><a href="<?//=Url::toRoute(['site/contact']);?>"><i class="fas fa-star"></i><span>Избранное</span></a></li>-->
+                                                                <?php
+                                                                if(Yii::$app->user->isGuest)  {
+                                                                    ?>
+                                                                    <li><a href="<?=Url::toRoute(['site/login']);?>"><i class="fas fa-sign-out-alt"></i><span>Войти</span></a></li>
+                                                                    <?php
+                                                                } else{
+                                                                    ?>
+                                                                    <li><a href="<?=Url::toRoute(['/site/logout']);?>" data-method="post"><i class="fas fa-sign-out-alt"></i><span>Выйти</span></a></li>
+                                                                    <?php
+                                                                }
+                                                                ?>
+							</ul>
+						</div>
+					</div>
+					<div class="sbl_c_fltr">
+						<div class="sbl_c_fltr_strt">
+<!--							<select>
+								<option>Пункт 1</option>
+								<option>Пункт 2</option>
+								<option>Пункт 3</option>
+								<option>Пункт 4</option>
+							</select>-->
+						</div>
+						<!-- <div class="sbl_c_fltr_strt clearfix">
+							<div>
+								<em>Улица</em>
+								<select data-placeholder="Выберите улицу" class="sbl_c_fltr_strt_id" multiple tabindex="4">
+									<option value=""></option>
+									<option value="United States">United States</option>
+									<option value="United Kingdom">United Kingdom</option>
+									<option value="Afghanistan">Afghanistan</option>
+									<option value="Aland Islands">Aland Islands</option>
+									<option value="Albania">Albania</option>
+									<option value="Algeria">Algeria</option>
+								</select>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="btn_toggle">
+				<i class="fas fa-chevron-left"></i>
+			</div>
+			<div class="cnt">
+                            <?= $content ?>
+			</div>
+		</div>
+	</div>
 
 <?php $this->endBody() ?>
 </body>

@@ -8,4 +8,12 @@
 
 return [ 
     'привет' => 'hello',
+    'Квартиры' => 'Apartments',
+    'Добавить квартиру' => 'Create Apartment',
+    'Список квартир' => 'Apartments list',
+    'Сохранить' => 'Save',
+    'Изменить' => 'Update',
+    'Удалить' => 'Delete',
+    'Добавление квартиры' => 'Create Apartment',
+    'Изменение квартиры' => 'Update Apartment',
 ];
