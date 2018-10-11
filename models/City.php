@@ -60,4 +60,13 @@ class City extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Area::className(), ['city_id' => 'id']);
     }
+    
+    /**
+     * @return array
+     */
+    public function getAllCities()
+    {
+        $condition = null;
+        return City::find()->where($condition)->all();
+    }
 }

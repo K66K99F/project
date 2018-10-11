@@ -51,4 +51,9 @@ class HouseType extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Apartment::className(), ['house_type_id' => 'id']);
     }
+    
+    public function getAllHouseType(){
+        $condition = null;
+        return HouseType::find()->where($condition)->all();
+    }
 }

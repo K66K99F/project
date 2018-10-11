@@ -8,12 +8,17 @@ use app\models\StreetSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\City;
+use app\models\Area;
+use app\models\MyFunctions;
 
 /**
  * StreetController implements the CRUD actions for Street model.
  */
 class StreetController extends Controller
 {
+    
+//    public $enableCsrfValidation = false;
     /**
      * {@inheritdoc}
      */
@@ -65,6 +70,12 @@ class StreetController extends Controller
     public function actionCreate()
     {
         $model = new Street();
+        $model_city = new City();
+        $my_functions = new MyFunctions();
+        
+        $all_cities = $model_city->getAllCities();
+        $array_all_cities = $my_functions->myArray($all_cities, 'id', 'city');
+        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +83,8 @@ class StreetController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'model_city' => $model_city,
+            'array_all_cities' => $array_all_cities,
         ]);
     }
 
@@ -85,6 +98,11 @@ class StreetController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model_city = new City(); 
+        $my_functions = new MyFunctions();
+        
+        $all_cities = $model_city->getAllCities();
+        $array_all_cities = $my_functions->myArray($all_cities, 'id', 'city');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,6 +110,8 @@ class StreetController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'model_city' => $model_city,
+            'array_all_cities' => $array_all_cities,
         ]);
     }
 
@@ -107,6 +127,29 @@ class StreetController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+    public function actionCities(){
+//        return Yii::$app->request->post();
+    }
+    
+    public function actionAreas($id){
+        $_id = (string)$id;
+        $area = new Area();
+        $my_functions = new MyFunctions();
+        
+        $areas = $area->getAreaByCityId($_id);
+        $array_areas = $my_functions->myArray($areas, 'id', 'area');
+        
+        if(isset($array_areas)){
+            echo "<option>выбрать..</option>";
+            foreach($array_areas as $key=>$value){
+                echo "<option value='".$key."'>".$value."</option>";
+            }
+        }else{
+            echo "<option> - </option>";
+        }
+//        return Yii::$app->request->post();
     }
 
     /**

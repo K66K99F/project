@@ -20,13 +20,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'city_id') ?>
+    <!--<?//= $form->field($model, 'city_id') ?>-->
 
-    <?= $form->field($model, 'area_id') ?>
+    <!--<?//= $form->field($model, 'area_id') ?>-->
 
-    <?= $form->field($model, 'street_id') ?>
+    <!--<?//= $form->field($model, 'street_id') ?>-->
 
-    <?= $form->field($model, 'home') ?>
+    <!--<?//= $form->field($model, 'home') ?>-->
 
     <?php // echo $form->field($model, 'apartment') ?>
 
@@ -61,8 +61,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'status') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('apartment', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('apartment', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <!--<?//= Html::submitButton(Yii::t('apartment', 'Search'), ['class' => 'btn btn-primary']) ?>-->
+        <!--<?//= Html::resetButton(Yii::t('apartment', 'Reset'), ['class' => 'btn btn-default']) ?>-->
     </div>
 
     <?php ActiveForm::end(); ?>

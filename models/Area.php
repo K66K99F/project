@@ -73,4 +73,23 @@ class Area extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Street::className(), ['area_id' => 'id']);
     }
+    
+    /**
+     * @return array
+     */
+    public function getAllAreas()
+    {
+        $condition = null;
+        return Area::find()->where($condition)->all();
+    }
+    
+    /**
+     * 
+     * @param string $id
+     * @return array
+     */
+    public function getAreaByCityId($id){
+        $condition = null;
+        return Area::find()->where(['city_id' => $id])->all();
+    }
 }

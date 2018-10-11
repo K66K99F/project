@@ -8,6 +8,8 @@ use app\models\AreaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\City;
+use app\models\MyFunctions;
 
 /**
  * AreaController implements the CRUD actions for Area model.
@@ -65,6 +67,12 @@ class AreaController extends Controller
     public function actionCreate()
     {
         $model = new Area();
+        $city = new City();
+        $my_functions = new MyFunctions();
+        
+        $all_cities = $city->getAllCities();
+        $array_all_cities = $my_functions->myArray($all_cities, 'id', 'city');
+        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +80,7 @@ class AreaController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'array_all_cities' => $array_all_cities,
         ]);
     }
 
@@ -85,6 +94,11 @@ class AreaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $city = new City();
+        $my_functions = new MyFunctions();
+        
+        $all_cities = $city->getAllCities();
+        $array_all_cities = $my_functions->myArray($all_cities, 'id', 'city');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,6 +106,7 @@ class AreaController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'array_all_cities' => $array_all_cities,
         ]);
     }
 

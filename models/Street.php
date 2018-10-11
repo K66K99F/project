@@ -64,4 +64,14 @@ class Street extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Area::className(), ['id' => 'area_id']);
     }
+    
+    public function getAllStreets(){
+        $condition = null;
+        return Street::find()->where($condition)->all();
+    }
+    
+    public function getStreetByAreaId($id){
+        $condition = null;
+        return Street::find()->where(['area_id' => $id])->all();
+    }
 }

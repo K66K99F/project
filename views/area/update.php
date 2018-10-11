@@ -4,6 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Area */
+/* @var $array_all_cities all cities  */
+
 
 $this->title = Yii::t('apartment', 'Update Area: ' . $model->id, [
     'nameAttribute' => '' . $model->id,
@@ -18,6 +20,7 @@ $this->params['breadcrumbs'][] = Yii::t('apartment', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'array_all_cities' => $array_all_cities,
     ]) ?>
 
 </div>

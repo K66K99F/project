@@ -28,6 +28,40 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 	<div class="home">
+                <?php if( Yii::$app->session->hasFlash('apartment_save_success') ): ?>
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4><i class="icon fa fa-check"></i>Сохранено!</h4>
+                        <?php echo Yii::$app->session->getFlash('apartment_save_success'); ?>
+                    </div>
+                <?php endif;?>
+                <?php if( Yii::$app->session->hasFlash('apartment_save_failure') ): ?>
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4><i class="icon fa fa-minus"></i>Не удалось!</h4>
+                        <?php echo Yii::$app->session->getFlash('apartment_save_failure'); ?>
+                    </div>
+                <?php endif;?>
+                <?php if( Yii::$app->session->hasFlash('apartment_update_success') ): ?>
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4><i class="icon fa fa-check"></i>Обновлено!</h4>
+                        <?php echo Yii::$app->session->getFlash('apartment_update_success'); ?>
+                    </div>
+                <?php endif;?>
+                <?php if( Yii::$app->session->hasFlash('apartment_update_failure') ): ?>
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4><i class="icon fa fa-minus"></i>Не удалось!</h4>
+                        <?php echo Yii::$app->session->getFlash('apartment_update_failure'); ?>
+                    </div>
+                <?php endif;?>
+                <?php if( Yii::$app->session->hasFlash('apartment_load_failure') ): ?>
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <?php echo Yii::$app->session->getFlash('apartment_load_failure'); ?>
+                    </div>
+                <?php endif;?>
 		<header>
 			<div class="header_logo">
 				<a href="">

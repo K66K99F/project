@@ -52,7 +52,7 @@ class Apartment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['city_id', 'area_id', 'street_id', 'home', 'apartment', 'rooms', 'house_type_id', 'quadrature', 'storey', 'elevator', 'price', 'stage_complete', 'payment', 'rights_house', 'layout_type', 'user_id', 'date_create', 'date_update', 'status'], 'required'],
+            [['city_id', 'area_id', 'street_id', 'home', 'apartment', 'rooms', 'house_type_id', 'quadrature', 'storey', 'elevator', 'price', 'stage_complete', 'payment', 'rights_house', 'layout_type', 'user_id', 'status'], 'required'],
             [['city_id', 'area_id', 'street_id', 'home', 'apartment', 'rooms', 'house_type_id', 'quadrature', 'elevator', 'price', 'stage_complete', 'payment', 'layout_type', 'user_id', 'status'], 'integer'],
             [['comments'], 'string'],
             [['date_create', 'date_update'], 'safe'],

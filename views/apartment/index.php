@@ -13,8 +13,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="apartment-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php Pjax::begin(['id' => 'apartment-pjax-grid-view']); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('apartment', 'Добавить квартиру'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
             [
                 'class' => 'yii\grid\SerialColumn',
@@ -56,8 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'layout_type',
             'comments:ntext',
             'user_id',
-//            'date_create',
-//            'date_update',
+            'date_create',
+            'date_update',
             'status',
 
             ['class' => 'yii\grid\ActionColumn'],
@@ -65,3 +65,17 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php Pjax::end(); ?>
 </div>
+<?php
+    $this->registerJs(
+    "
+//    $('#apartment-pjax-grid-view').yiiGridView('applyFilter');
+//    $(function(){
+//        var i = 0;
+//        $('#apartmentsearch-id').on('change', function(ev) {
+//            console.log(i++);
+//             $.pjax.reload({container: '#apartment-pjax-grid-view', timeoute:false});
+//        });
+//    });
+    "
+    );
+?>
